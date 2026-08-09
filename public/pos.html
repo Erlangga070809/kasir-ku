@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS — Kasir Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="app-layout pos-layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+            <span>Kasir Digital</span>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+        </nav>
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </aside>
+    <div class="main-wrapper">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="topbar-title">Point of Sale</span>
+        </header>
+        <main class="main-content pos-content">
+            <div class="pos-products-panel">
+                <div class="pos-search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="posSearch" placeholder="Cari produk...">
+                </div>
+                <div class="pos-products-grid" id="posProducts">
+                    <div class="skeleton pos-product-skeleton"></div>
+                    <div class="skeleton pos-product-skeleton"></div>
+                    <div class="skeleton pos-product-skeleton"></div>
+                    <div class="skeleton pos-product-skeleton"></div>
+                    <div class="skeleton pos-product-skeleton"></div>
+                    <div class="skeleton pos-product-skeleton"></div>
+                </div>
+            </div>
+            <div class="pos-cart-panel">
+                <div class="pos-cart-header">
+                    <h3>Keranjang</h3>
+                    <button class="btn-ghost btn-sm" id="clearCart">Hapus Semua</button>
+                </div>
+                <div class="pos-cart-items" id="posCartItems">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        <p>Keranjang kosong</p>
+                        <span>Pilih produk untuk memulai transaksi</span>
+                    </div>
+                </div>
+                <div class="pos-cart-summary" id="posCartSummary">
+                    <div class="pos-cart-total">
+                        <span>Total</span>
+                        <span id="posTotal">Rp0</span>
+                    </div>
+                    <div class="pos-payment-methods">
+                        <select id="paymentMethod" class="form-select">
+                            <option value="cash">Cash</option>
+                            <option value="qris">QRIS</option>
+                            <option value="transfer">Transfer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="pos-cash-input" id="posCashInput" style="display:flex;">
+                        <label>Jumlah Bayar</label>
+                        <input type="number" id="paymentAmount" class="form-input" placeholder="0" min="0">
+                    </div>
+                    <div class="pos-change" id="posChange" style="display:none;">
+                        <span>Kembalian</span>
+                        <span id="changeAmount">Rp0</span>
+                    </div>
+                    <button class="btn-primary btn-full btn-lg" id="completeSale" disabled>Selesaikan Pembayaran</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+    </div>
+    <div class="modal" id="receiptModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Transaksi Berhasil</h3>
+                <button class="modal-close" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body" id="receiptContent">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost" id="btnNewSale">Transaksi Baru</button>
+                <button class="btn-primary" id="btnPrintReceipt">Cetak Struk</button>
+            </div>
+        </div>
+    </div>
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="/js/app.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/pos.js"></script>
+</body>
+</html>
