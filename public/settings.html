@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan — Kasir Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="app-layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+            <span>Kasir Digital</span>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+        </nav>
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </aside>
+    <div class="main-wrapper">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="topbar-title">Pengaturan</span>
+        </header>
+        <main class="main-content">
+            <div class="settings-container">
+                <div class="settings-section">
+                    <h2>Profil</h2>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="settingsName">Nama</label>
+                            <input type="text" id="settingsName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsEmail">Email</label>
+                            <input type="email" id="settingsEmail" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsPassword">Password Baru</label>
+                            <input type="password" id="settingsPassword" class="form-input" minlength="8" placeholder="Kosongkan jika tidak ingin mengubah">
+                        </div>
+                        <button type="submit" class="btn-primary">Simpan Profil</button>
+                    </form>
+                </div>
+                <div class="settings-section">
+                    <h2>Toko</h2>
+                    <form id="storeForm">
+                        <div class="form-group">
+                            <label for="storeName">Nama Toko</label>
+                            <input type="text" id="storeName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storeCurrency">Mata Uang</label>
+                            <input type="text" id="storeCurrency" class="form-input" value="Rp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storeTimezone">Timezone</label>
+                            <select id="storeTimezone" class="form-select">
+                                <option value="Asia/Jakarta">Asia/Jakarta</option>
+                                <option value="Asia/Makassar">Asia/Makassar</option>
+                                <option value="Asia/Jayapura">Asia/Jayapura</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storeLowStock">Default Batas Stok Rendah</label>
+                            <input type="number" id="storeLowStock" class="form-input" min="0" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="storeReceiptFooter">Footer Struk</label>
+                            <textarea id="storeReceiptFooter" class="form-input" rows="2">Terima kasih telah berbelanja!</textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Simpan Toko</button>
+                    </form>
+                </div>
+                <div class="settings-section">
+                    <h2>Metode Pembayaran</h2>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="pmCash" checked> Cash</label>
+                        <label><input type="checkbox" id="pmQris" checked> QRIS</label>
+                        <label><input type="checkbox" id="pmTransfer" checked> Transfer</label>
+                        <label><input type="checkbox" id="pmOther" checked> Other</label>
+                    </div>
+                    <button class="btn-primary" id="savePaymentMethods">Simpan</button>
+                </div>
+                <div class="settings-section settings-danger">
+                    <h2>Logout</h2>
+                    <button class="btn-danger" id="logoutBtn">Keluar dari Akun</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+    </div>
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="/js/app.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/products.js"></script>
+</body>
+</html>
