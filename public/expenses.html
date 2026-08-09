@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengeluaran — Kasir Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="app-layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+            <span>Kasir Digital</span>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+        </nav>
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </aside>
+    <div class="main-wrapper">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="topbar-title">Pengeluaran</span>
+        </header>
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Pengeluaran</h1>
+                <button class="btn-primary" id="addExpenseBtn">Tambah Pengeluaran</button>
+            </div>
+            <div class="filter-bar">
+                <input type="date" id="expenseStartDate" class="form-input">
+                <span>sampai</span>
+                <input type="date" id="expenseEndDate" class="form-input">
+                <button class="btn-primary btn-sm" id="applyExpenseFilter">Filter</button>
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="expensesTable">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Jumlah</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesBody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="expensesPagination"></div>
+        </main>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+    </div>
+    <div class="modal" id="expenseModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="expenseModalTitle">Tambah Pengeluaran</h3>
+                <button class="modal-close" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="expenseForm">
+                    <input type="hidden" id="expenseId">
+                    <div class="form-group">
+                        <label for="expenseCategory">Kategori</label>
+                        <select id="expenseCategory" class="form-select" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="inventory">Inventori</option>
+                            <option value="electricity">Listrik</option>
+                            <option value="rent">Sewa</option>
+                            <option value="salary">Gaji</option>
+                            <option value="transportation">Transportasi</option>
+                            <option value="maintenance">Perawatan</option>
+                            <option value="other">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Jumlah</label>
+                        <input type="number" id="expenseAmount" class="form-input" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDescription">Deskripsi</label>
+                        <textarea id="expenseDescription" class="form-input" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDate">Tanggal</label>
+                        <input type="date" id="expenseDate" class="form-input" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost modal-close">Batal</button>
+                <button class="btn-primary" id="saveExpense">Simpan</button>
+            </div>
+        </div>
+    </div>
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="/js/app.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/products.js"></script>
+</body>
+</html>
